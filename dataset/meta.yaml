@@ -1,0 +1,77 @@
+package:
+  name: dataset
+  version: "0.8.0"
+
+source:
+  fn: dataset-0.8.0.tar.gz
+  url: https://pypi.python.org/packages/33/c3/a70e507115ea59daa13aa7f92542d8bac2e0a083ad933fa183d7231c655d/dataset-0.8.0.tar.gz
+  md5: 7b6c3d2eda03151e89b1f0b0df6c85df
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - dataset = dataset:main
+    #
+    # Would create an entry point called dataset that calls dataset.main()
+
+    - datafreeze = dataset.freeze.app:main
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - sqlalchemy >=0.9.1
+    - alembic >=0.6.2
+    - normality >=0.3.9
+    - pyyaml >=3.10
+    - six >=1.7.3
+
+  run:
+    - python
+    - sqlalchemy >=0.9.1
+    - alembic >=0.6.2
+    - normality >=0.3.9
+    - pyyaml >=3.10
+    - six >=1.7.3
+
+test:
+  # Python imports
+  imports:
+    - dataset
+    - dataset.freeze
+    - dataset.freeze.format
+    - dataset.persistence
+
+  commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+    - datafreeze --help
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://github.com/pudo/dataset
+  license: MIT License
+  summary: 'Toolkit for Python-based data processing.'
+  license_family: MIT
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
