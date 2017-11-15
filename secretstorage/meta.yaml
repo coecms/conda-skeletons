@@ -1,0 +1,58 @@
+{% set name = "secretstorage" %}
+{% set version = "2.3.1" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "3af65c87765323e6f64c83575b05393f9e003431959c9395d1791d51497f29b6" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  url: https://files.pythonhosted.org/packages/a5/a5/0830cfe34a4cfd0d1c3c8b614ede1edb2aaf999091ac8548dd19cb352e79/SecretStorage-2.3.1.tar.gz
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 0
+  script: python setup.py install  --single-version-externally-managed --record=record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - cryptography
+    - dbus-python
+  run:
+    - python
+    - cryptography
+    - dbus-python
+
+test:
+  imports:
+    - secretstorage
+
+about:
+  home: https://github.com/mitya57/secretstorage
+  license: BSD License
+  license_family: BSD
+  license_file: ''
+  summary: Python bindings to FreeDesktop.org Secret Service API
+  description: "\n.. image:: https://api.travis-ci.org/mitya57/secretstorage.svg\n   :target: https://travis-ci.org/mitya57/secretstorage\n   :alt: Travis CI status\n\nModule description\n==================\n\
+    \nThis module provides a way for securely storing passwords and other secrets.\n\nIt uses D-Bus `Secret Service`_ API that is supported by GNOME Keyring\n(since version 2.30) and KSecretsService.\n\n\
+    The main classes provided are ``secretstorage.Item``, representing a secret\nitem (that has a *label*, a *secret* and some *attributes*) and\n``secretstorage.Collection``, a place items are stored in.\n\
+    \nSecretStorage supports most of the functions provided by Secret Service,\nincluding creating and deleting items and collections, editing items,\nlocking and unlocking collections (asynchronous unlocking\
+    \ is also supported).\n\nThe documentation can be found on `secretstorage.readthedocs.io`_.\n\n.. _`Secret Service`: https://specifications.freedesktop.org/secret-service/\n.. _`secretstorage.readthedocs.io`:\
+    \ https://secretstorage.readthedocs.io/en/latest/\n\nBuilding the module\n===================\n\n.. note::\n   SecretStorage supports Python 2.7 and all versions of Python since 3.3.\n   Here we assume\
+    \ that your Python version is 3.x.\n\nSecretStorage requires these packages to work:\n\n* `dbus-python`_\n* `python-cryptography`_\n\nTo build SecretStorage, use this command::\n\n   python3 setup.py\
+    \ build\n\nIf you have Sphinx_ installed, you can also build the documentation::\n\n   python3 setup.py build_sphinx\n\n.. _`dbus-python`: https://www.freedesktop.org/wiki/Software/DBusBindings/#dbus-python\n\
+    .. _`python-cryptography`: https://pypi.python.org/pypi/cryptography\n.. _Sphinx: http://sphinx-doc.org/\n\nTesting the module\n==================\n\nFirst, make sure that you have the Secret Service\
+    \ daemon installed.\nThe `GNOME Keyring`_ is the reference server-side implementation for the\nSecret Service specification.\n\n.. _`GNOME Keyring`: https://download.gnome.org/sources/gnome-keyring/\n\
+    \nThen, start the daemon and unlock the ``default`` collection, if needed.\nThe testsuite will fail to run if the ``default`` collection exists and is\nlocked. If it does not exist, the testsuite can\
+    \ also use the temporary\n``session`` collection, as provided by the GNOME Keyring.\n\nThen, run the Python unittest module::\n\n   python3 -m unittest discover -s tests\n\nIf you want to run the tests\
+    \ in an isolated or headless environment, run\nthis command in a D-Bus session::\n\n   dbus-run-session -- python3 -m unittest discover -s tests\n\nGet the code\n============\n\nSecretStorage is available\
+    \ under BSD license. The source code can be found\non GitHub_.\n\n.. _GitHub: https://github.com/mitya57/secretstorage\n"
+  doc_url: ''
+  dev_url: ''
+
+extra:
+  recipe-maintainers: ''
