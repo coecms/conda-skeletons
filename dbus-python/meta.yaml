@@ -1,0 +1,17 @@
+package:
+    name: dbus-python
+    version: 1.2.4
+
+source:
+    url: https://dbus.freedesktop.org/releases/dbus-python/dbus-python-1.2.4.tar.gz
+    sha256: e2f1d6871f74fba23652e51d10873e54f71adab0525833c19bad9e99b1b2f9cc
+
+requirements:
+    build:
+        - dbus
+        - dbus-glib
+        - python
+    run:
+        - dbus
+        - dbus-glib
+        - python
