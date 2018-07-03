@@ -1,0 +1,34 @@
+package:
+    name: mule
+    version: '2017.08.1'
+
+source:
+    svn_url: https://code.metoffice.gov.uk/svn/um/mule/trunk
+    svn_rev: 43028
+
+build:
+    number: 0
+    script: |
+        pushd mule; python setup.py install --single-version-externally-managed --record record.txt; popd
+        pushd um_utils; python setup.py install --single-version-externally-managed --record record.txt; popd
+
+requirements:
+    build:
+        - python
+        - numpy
+    run:
+        - python
+        - numpy
+
+test:
+    imports:
+        - mule
+    commands:
+        - mule-pumf --help
+        - mule-version
+
+about:
+    home: https://code.metoffice.gov.uk/trac/um
+    license: BSD
+    license_file: mule/LICENCE.txt
+    summary: Unified Model Fields File interface
