@@ -1,0 +1,62 @@
+{% set version = "1.5.0" %}
+
+package:
+  name: pyngl
+  version: {{ version }}
+
+source:
+  fn: pyngl-{{ version }}.tar.gz
+  url: https://github.com/NCAR/pyngl/archive/{{ version }}.tar.gz
+  sha256: 14a5fc172d4eb166a675c190d1349e5ac46cbee32d0efcc2c0446d47bbce094b
+
+build:
+  number: 1
+  skip: True  # [win or py3k]
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - ncl
+    - gcc
+    - python
+    - numpy 1.7.*  # [py27]
+    - libpng >=1.6.32,<1.6.35
+    - pkg-config
+    - fontconfig 2.12.*
+    - freetype 2.8.1
+    - expat 2.2.*
+    - cairo 1.14.*  # [linux]
+    - zlib 1.2.11
+  run:
+    - ncl
+    - libgcc
+    - python
+    - numpy >=1.7  # [py27]
+    - libpng >=1.6.32,<1.6.35
+    - pkg-config
+    - fontconfig 2.12.*
+    - freetype 2.8.1
+    - expat 2.2.*
+    - cairo 1.14.*  # [linux]
+    - zlib 1.2.11
+
+test:
+  source_files:
+    - examples
+  requires:
+    - nose
+  imports:
+    - Ngl
+  commands:
+    - cd examples && for file in xy2.py; do echo $file ; nosetests $file ; done | tee pyngl-test.log
+
+about:
+  home: http://pyngl.ucar.edu/
+  license: 'PyNGL Source Code'
+  summary: 'PyNGL is a scientific data visualization package with an emphasis on high quality 2D visualizations.'
+
+extra:
+  recipe-maintainers:
+    - khallock
+    - marylhaley
+    - david-ian-brown
