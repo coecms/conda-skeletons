@@ -19,28 +19,28 @@ requirements:
     - {{ compiler('c') }}
   host:
     - python
-    - numpy 1.14.*
+    - numpy=1.11.3=py27_blas_openblas_203
     - g2clib 1.6.*
     - hdf4
     - hdf5
     - hdfeos2
     - hdfeos5
     - jasper
-    - libgdal
+    - libgdal=2.2.4=ha6e4b24_6
     - libnetcdf
     - libuuid  # [osx]
     - proj4
     - util-linux  # [linux]
   run:
     - python
-    - numpy >=1.14
+    - numpy=1.11.3=py27_blas_openblas_203
     - g2clib 1.6.*
     - hdf4
     - hdf5
     - hdfeos2
     - hdfeos5
     - jasper
-    - libgdal
+    - libgdal=2.2.4=ha6e4b24_6
     - libnetcdf
     - libuuid  # [osx]
     - proj4
