@@ -22,19 +22,20 @@ requirements:
     - numpy 1.7.*  # [py27]
     - libpng >=1.6.32,<1.6.35
     - pkg-config
-    - fontconfig 2.12.*
+    - fontconfig #2.12.*
     - freetype 2.8.1
     - expat 2.2.*
     - cairo 1.14.*  # [linux]
     - zlib 1.2.11
   run:
     - ncl
+    - libgdal==2.2.4=ha6e4b24_6
     - libgcc
     - python
     - numpy >=1.7  # [py27]
     - libpng >=1.6.32,<1.6.35
     - pkg-config
-    - fontconfig 2.12.*
+    - fontconfig #2.12.*
     - freetype 2.8.1
     - expat 2.2.*
     - cairo 1.14.*  # [linux]
