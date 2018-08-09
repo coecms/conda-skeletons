@@ -1,0 +1,72 @@
+{% set version = "1.5.1" %}
+
+package:
+  name: pynio
+  version: {{ version }}
+
+source:
+  url: https://github.com/NCAR/pynio/archive/{{ version }}.tar.gz
+  sha256: 49f12433f1ec89d888190bc25364657fdfbae4e1444a5531173df09e859e217e
+
+build:
+  number: 1
+  skip: True  # [win]
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - {{ compiler('fortran') }}
+    - {{ compiler('c') }}
+  host:
+    - python
+    - numpy 1.14.*
+    - g2clib 1.6.*
+    - hdf4
+    - hdf5
+    - hdfeos2
+    - hdfeos5
+    - jasper
+    - libgdal
+    - libnetcdf
+    - libuuid  # [osx]
+    - proj4
+    - util-linux  # [linux]
+  run:
+    - python
+    - numpy >=1.14
+    - g2clib 1.6.*
+    - hdf4
+    - hdf5
+    - hdfeos2
+    - hdfeos5
+    - jasper
+    - libgdal
+    - libnetcdf
+    - libuuid  # [osx]
+    - proj4
+    - util-linux  # [linux]
+
+test:
+  source_files:
+    - test
+    - ncarg
+  requires:
+    - nose
+  imports:
+    - Nio
+  commands:
+    - cd $SRC_DIR/test && nosetests  # [not win]
+
+about:
+  home: http://www.pyngl.ucar.edu/Nio.shtml
+  license: BSD 3-clause
+  license_file: LICENSE
+  summary: 'PyNIO is a multi-format data I/O package with a NetCDF-style interface.'
+
+extra:
+  recipe-maintainers:
+    - marylhaley
+    - ocefpaf
+    - jhamman
+    - david-ian-brown
+    - khallock
