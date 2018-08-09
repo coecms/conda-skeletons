@@ -1,0 +1,38 @@
+{% set name = "click_default_group" %}
+{% set version = "1.2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  #url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/86/3e/389d8bbe3033613b17ce4136dbcf3e69c785c9c54d08f3adb95336b52040/click-default-group-1.2.tar.gz 
+  sha256: ba8c43d9c384e1ea7127484c5fc8f4e1ca759519a64fff10718d53f4b82c412a
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv "
+
+requirements:
+  host:
+    - click
+    - pip
+    - pip
+    - python
+  run:
+    - click
+    - python
+
+about:
+  home: https://github.com/sublee/click-default-group/
+  license: BSD
+  license_family: BSD
+  license_file: 
+  summary: Extends click.Group to invoke a command without explicit subcommand name
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here
