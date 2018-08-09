@@ -1,0 +1,99 @@
+{% set version = "6.5.0" %}
+{% set variant = "openblas" %}
+
+package:
+  name: ncl
+  version: {{ version }}
+
+source:
+  url: https://github.com/NCAR/ncl/archive/{{ version }}.tar.gz
+  sha256: 133446f3302eddf237db56bf349e1ebf228240a7320699acc339a3d7ee414591
+  patches:
+    - grib2.patch
+
+build:
+  merge_build_host: True  # [osx]
+  number: 0
+  skip: True  # [win]
+  features:
+    - blas_{{ variant }}  # [not win]
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - pkg-config
+    - {{ compiler('fortran') }}
+    - {{ compiler('c') }}
+  host:
+    - blas 1.1 {{ variant }}  # [not win]
+    - bzip2
+    - cairo  # [linux]
+    - curl
+    - freetype  # [linux]
+    - gsl
+    - hdf4
+    - hdf5
+    - hdfeos2
+    - hdfeos5
+    - jasper
+    - jpeg
+    - libgdal
+    - libiconv
+    - libnetcdf
+    - libpng
+    - pixman  # [linux]
+    - proj4
+    - udunits2
+    - zlib
+    - flex
+  run:
+    - blas 1.1 {{ variant }}  # [not win]
+    - bzip2
+    - cairo  # [linux]
+    - curl
+    - freetype  # [linux]
+    - gsl
+    - hdf4
+    - hdf5
+    - hdfeos2
+    - hdfeos5
+    - jasper
+    - jpeg
+    - libgcc  # [osx]
+    - libgdal
+    - libiconv
+    - libnetcdf
+    - libpng
+    - pixman  # [linux]
+    - proj4
+    - udunits2
+    - zlib
+    - esmf
+    - xorg-imake  # [linux]
+    - xorg-libx11  # [linux]
+    - xorg-libxaw  # [linux]
+    - xorg-libxmu  # [linux]
+    - xorg-libxrender  # [linux]
+    - xorg-makedepend  # [linux]
+
+test:
+  source_files:
+    - install/make-tarfile/check_files
+  commands:
+    - test "$(ncl -V)" = "{{ version }}"
+    - NCARG_ROOT=${PREFIX} install/make-tarfile/check_files | grep -qv '^<'
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+
+about:
+  home: http://ncl.ucar.edu/
+  license: 'NCL Source Code'
+  license_file: COPYING
+  summary: 'NCAR Command Language'
+
+extra:
+  recipe-maintainers:
+    - khallock
+    - marylhaley
+    - david-ian-brown
+    - ocefpaf

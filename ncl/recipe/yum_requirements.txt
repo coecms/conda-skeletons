@@ -1,0 +1,5 @@
+csh
+libX11-devel
+libXaw-devel
+libXmu-devel
+byacc
