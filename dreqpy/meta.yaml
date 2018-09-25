@@ -1,0 +1,29 @@
+package:
+    name: dreqpy
+    version: "01.00.28b1"
+
+source:
+    svn_url: http://proj.badc.rl.ac.uk/svn/exarch/CMIP6dreq/tags/01.00.27b1
+
+build:
+    number: 0
+
+    script: pip install --no-deps --ignore-installed .
+
+
+requirements:
+    build:
+        - python
+    run:
+        - python
+
+
+test:
+    imports:
+        - dreqPy
+
+about:
+    home: https://www.earthsystemcog.org/projects/wip/CMIP6DataRequest
+    license: BSD
+    license_file: LICENSE
+
