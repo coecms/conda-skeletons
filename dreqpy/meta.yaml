@@ -10,17 +10,18 @@ build:
 
     script: pip install --no-deps --ignore-installed .
 
-
 requirements:
     build:
         - python
     run:
         - python
-
+        - xlsxwriter
 
 test:
     imports:
         - dreqPy
+    commands:
+        - drq --unitTest
 
 about:
     home: https://www.earthsystemcog.org/projects/wip/CMIP6DataRequest
