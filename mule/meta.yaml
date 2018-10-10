@@ -1,10 +1,10 @@
 package:
     name: mule
-    version: '2017.08.1'
+    version: '2018.07.1'
 
 source:
     svn_url: https://code.metoffice.gov.uk/svn/um/mule/trunk
-    svn_rev: 43028
+    svn_rev: 57375
 
 build:
     number: 0
@@ -19,6 +19,7 @@ requirements:
     run:
         - python
         - numpy
+        - six
 
 test:
     imports:
