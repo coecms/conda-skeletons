@@ -1,30 +1,37 @@
+{% set name = "dreqpy" %}
+{% set version = "1.0.28" %}
+
 package:
-    name: dreqpy
-    version: "01.00.28b1"
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
 
 source:
-    svn_url: http://proj.badc.rl.ac.uk/svn/exarch/CMIP6dreq/tags/01.00.27b1
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: b25e33e74da2342ad291b7cbedbec5ed129fb856d6b21cf78837298e0c4e7824
 
 build:
-    number: 0
-
-    script: pip install --no-deps --ignore-installed .
+  number: 0
+  entry_points:
+    - drq = dreqPy.dreqCmdl:main_entry
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed"
 
 requirements:
-    build:
-        - python
-    run:
-        - python
-        - xlsxwriter
+  host:
+    - pip
+    - python
+  run:
+    - python
 
 test:
-    imports:
-        - dreqPy
-    commands:
-        - drq --unitTest
+  imports:
+    - dreqPy
+    - dreqPy.examples
+    - dreqPy.extensions
+  commands:
+    - drq --help
 
 about:
-    home: https://www.earthsystemcog.org/projects/wip/CMIP6DataRequest
-    license: BSD
-    license_file: LICENSE
-
+  home: http://proj.badc.rl.ac.uk/svn/exarch/CMIP6dreq/tags/01.00.28
+  license: MIT
+  license_family: MIT
+  summary: CMIP6 Data Request Python API
