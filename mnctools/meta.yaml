@@ -1,0 +1,42 @@
+{% set name = "mnctools" %}
+{% set version = "0.2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 29682af46cdf4550648b847133a4e12eaf311a10a58e80b627f243498e0468ad
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv "
+
+requirements:
+  host:
+    - netcdf4
+    - numpy
+    - pip
+    - python
+  run:
+    - netcdf4
+    - numpy
+    - python
+
+test:
+  imports:
+    - mnctools
+
+about:
+  home: http://github.com/marshallward/mnctools
+  license: Apache Software
+  license_family: APACHE
+  license_file: 
+  summary: MNC support module for MITgcm
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - aidanheerdegen
