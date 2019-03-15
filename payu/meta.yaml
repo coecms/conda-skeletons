@@ -1,0 +1,41 @@
+{% set name = "payu" %}
+{% set version = "0.11.2.beta" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/payu-org/payu/archive/master.zip
+
+build:
+  number: 3
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv "
+
+requirements:
+  host:
+    - f90nml
+    - pip
+    - python
+    - pyyaml
+  run:
+    - f90nml
+    - python
+    - pyyaml
+
+test:
+  imports:
+    - payu
+
+about:
+  home: http://github.com/payu-org/payu
+  license: Apache Software
+  license_family: APACHE
+  license_file: 
+  summary: A climate model workflow manager for supercomputing environments.
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - aidanheerdegen
