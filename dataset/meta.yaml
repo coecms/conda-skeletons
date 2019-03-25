@@ -1,68 +1,33 @@
+{% set version='1.1.2' %}
+
 package:
   name: dataset
-  version: "0.8.0"
+  version: {{version}}
 
 source:
-  fn: dataset-0.8.0.tar.gz
-  url: https://pypi.python.org/packages/33/c3/a70e507115ea59daa13aa7f92542d8bac2e0a083ad933fa183d7231c655d/dataset-0.8.0.tar.gz
-  md5: 7b6c3d2eda03151e89b1f0b0df6c85df
-#  patches:
-   # List any patch files here
-   # - fix.patch
+  url: https://pypi.python.org/packages/source/d/dataset/dataset-{{version}}.tar.gz
+  sha256: 06e6e8166a2ce12524ffbed97b82866caeaa2dd8e85ee65baccf3b815528e22e
 
 build:
-  # noarch_python: True
-  # preserve_egg_dir: True
-  entry_points:
-    # Put any entry points (scripts to be generated automatically) here. The
-    # syntax is module:function.  For example
-    #
-    # - dataset = dataset:main
-    #
-    # Would create an entry point called dataset that calls dataset.main()
-
-    - datafreeze = dataset.freeze.app:main
-
-  # If this is a new build for the same version, increment the build
-  # number. If you do not include this key, it defaults to 0.
-  # number: 1
+  noarch: python
+  number: 0
+  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
-  build:
+  host:
     - python
-    - setuptools
-    - sqlalchemy >=0.9.1
-    - alembic >=0.6.2
-    - normality >=0.3.9
-    - pyyaml >=3.10
-    - six >=1.7.3
+    - pip
 
   run:
     - python
-    - sqlalchemy >=0.9.1
+    - sqlalchemy >=1.1.2
     - alembic >=0.6.2
-    - normality >=0.3.9
-    - pyyaml >=3.10
-    - six >=1.7.3
+    - six >=1.11.0
 
 test:
   # Python imports
   imports:
     - dataset
-    - dataset.freeze
-    - dataset.freeze.format
-    - dataset.persistence
-
-  commands:
-    # You can put test commands to be run here.  Use this to test that the
-    # entry points work.
-
-  # You can also put a file called run_test.py in the recipe that will be run
-  # at test time.
-
-  # requires:
-    # Put any additional test requirements here.  For example
-    # - nose
 
 about:
   home: http://github.com/pudo/dataset
