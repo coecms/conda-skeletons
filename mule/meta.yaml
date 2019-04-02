@@ -1,21 +1,22 @@
 package:
     name: mule
-    version: '2018.07.1'
+    version: '2019.01.1'
 
 source:
     svn_url: https://code.metoffice.gov.uk/svn/um/mule/trunk
-    svn_rev: 57375
+    svn_rev: 64490
 
 build:
+    noarch: python
     number: 0
     script: |
-        pushd mule; python setup.py install --single-version-externally-managed --record record.txt; popd
-        pushd um_utils; python setup.py install --single-version-externally-managed --record record.txt; popd
+        pushd mule; python -m pip install --no-deps --ignore-installed .; popd
+        pushd um_utils; python -m pip install --no-deps --ignore-installed .; popd
 
 requirements:
-    build:
+    host:
         - python
-        - numpy
+        - pip
     run:
         - python
         - numpy
