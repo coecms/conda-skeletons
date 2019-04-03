@@ -1,5 +1,5 @@
-{% set name = "dreqpy" %}
-{% set version = "1.0.28" %}
+{% set name = "dreqPy" %}
+{% set version = "1.0.30" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,9 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: b25e33e74da2342ad291b7cbedbec5ed129fb856d6b21cf78837298e0c4e7824
+  sha256: 2bdc8e3a7168392858e22b36d5b1e7f52d18bc70cbb38a1eef8e8c67096fd4a8
 
 build:
+  noarch: python
   number: 0
   entry_points:
     - drq = dreqPy.dreqCmdl:main_entry
@@ -23,12 +24,14 @@ requirements:
     - python
 
 test:
+  requires:
+    - xlsxwriter
   imports:
     - dreqPy
     - dreqPy.examples
     - dreqPy.extensions
   commands:
-    - drq --help
+    - drq -h
 
 about:
   home: http://proj.badc.rl.ac.uk/svn/exarch/CMIP6dreq/tags/01.00.28
