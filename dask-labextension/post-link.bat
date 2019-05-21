@@ -3,5 +3,5 @@
 ::     http://conda.pydata.org/docs/building/build-scripts.html
 :: Copied from https://github.com/conda-forge/jupyter_contrib_nbextensions-feedstock/
 (
-  "%PREFIX%\Scripts\jupyter" dask-labextension enable --sys-prefix
+  "%PREFIX%\Scripts\jupyter" labextension install dask-labextension
 ) >>"%PREFIX%\.messages.txt" 2>&1
