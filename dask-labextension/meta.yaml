@@ -1,0 +1,40 @@
+{% set name = "dask-labextension" %}
+{% set version = "0.3.3" %}
+{% set sha256 = "c3fa82fd82a65970e5c65412762709cdbe4852c13ec71bbaff923ebc9cadaff8" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/21/b6/1f446932b814306f63ee4f25df1aa888d437259c6b418b4193f84ef51e2e/dask_labextension-0.3.3.tar.gz
+  # url: https://files.pythonhosted.org/packages/source/d/dask-labextension/dask-labextension-{{version}}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  number: 2
+  script: python -m pip install --no-deps --ignore-installed .
+
+requirements:
+  build:
+    - python
+    - pip
+    - notebook
+    - dask
+    - nodejs
+  run:
+    - python
+    - notebook
+    - dask
+    - nodejs
+
+about:
+  home: http://github.com/dask/{{ name }}
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: 'A Jupyter Notebook server extension manages Dask clusters.'
+
