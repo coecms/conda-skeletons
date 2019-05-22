@@ -29,6 +29,7 @@ requirements:
     - python
     - notebook
     - dask
+    - nodejs
 
 about:
   home: http://github.com/dask/{{ name }}
