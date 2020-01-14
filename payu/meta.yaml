@@ -6,12 +6,10 @@ package:
   version: "{{ version }}"
 
 source:
-  # git_url: https://github.com/aidanheerdegen/payu.git
-  # git_tag: mitgcm-183
-  url: https://github.com/aidanheerdegen/payu/archive/mitgcm-183.zip
+  url: https://github.com/payu-org/payu/archive/master.zip
 
 build:
-  number: 6
+  number: 7
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv "
 
 requirements:

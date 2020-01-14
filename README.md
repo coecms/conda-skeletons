@@ -6,9 +6,13 @@ To add a package
 
     conda skeleton pypi $PACKAGE
 
-To upload a package
+To upload a package using a specific python version
 
     conda build --user coecms $PACKAGE --python=3.6
+
+To upload a noarch package
+
+    conda build --user coecms $PACKAGE
 
 If this doesn't upload automatically run
 
