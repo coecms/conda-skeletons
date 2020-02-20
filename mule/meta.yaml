@@ -1,10 +1,10 @@
 package:
     name: mule
-    version: '2019.01.1'
+    version: '2020.01.1'
 
 source:
     svn_url: https://code.metoffice.gov.uk/svn/um/mule/trunk
-    svn_rev: 64490
+    svn_rev: 79553
 
 build:
     noarch: python
