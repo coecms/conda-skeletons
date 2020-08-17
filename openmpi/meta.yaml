@@ -1,12 +1,13 @@
 package:
     name: openmpi
-    version: 4.0.1.gadi
+    version: 4.0.2
 
 source:
     path: .
 
 build:
-    number: 0
+    number: 1
+    string: gadi
 
 requirements:
     run:
