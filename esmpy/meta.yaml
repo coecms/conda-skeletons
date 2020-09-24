@@ -23,18 +23,17 @@ requirements:
     host:
         - python
         - numpy
-        - krb5=1.17.1
+        - krb5
     run:
         - python
         - numpy
+        - openssl
 
 test:
     imports:
         - ESMF
 
 about:
-    home: http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_8_0_0/esmpy_doc/html/index.html
-
     home: https://www.earthsystemcog.org/projects/esmpy/
     license: The University of Illinois/NCSA
     license_file: LICENSE
