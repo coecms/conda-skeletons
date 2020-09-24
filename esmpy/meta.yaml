@@ -26,13 +26,14 @@ requirements:
     run:
         - python
         - numpy
-        - openssl
+        - krb5>=1.18.2
+
 
 test:
-    requires:
-        - openssl
-    imports:
-        - ESMF
+    commands:
+        - python -v -c 'import ESMF'
+          # imports:
+          # - ESMF
 
 about:
     home: https://www.earthsystemcog.org/projects/esmpy/
