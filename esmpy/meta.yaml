@@ -23,7 +23,7 @@ requirements:
     host:
         - python
         - numpy
-        - krb5
+        - krb5=1.17.1
     run:
         - python
         - numpy
