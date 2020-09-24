@@ -30,6 +30,8 @@ requirements:
         - openssl
 
 test:
+    requires:
+        - openssl
     imports:
         - ESMF
 
