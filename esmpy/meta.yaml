@@ -1,0 +1,41 @@
+{% set version = "8.0.1" %}
+{% set ver = version.replace(".", "_") %}
+{% set build = 0 %}
+
+package:
+    name: esmpy
+    version: {{ version }}
+
+source:
+    url: https://github.com/esmf-org/esmf/archive/ESMF_{{ ver }}/esmf_{{ ver }}_src.tar.gz
+    sha256: 9172fb73f3fe95c8188d889ee72fdadb4f978b1d969e1d8e401e8d106def1d84
+
+build:
+    number: {{ build }}
+    script: |
+        cd src/addon/ESMPy
+        {{ PYTHON }} setup.py build --ESMFMKFILE=/apps/esmf/{{ version }}/lib/esmf.mk
+        {{ PYTHON }} setup.py install
+    string: gadi
+    noarch: python
+
+requirements:
+    host:
+        - python
+        - numpy
+        - krb5
+    run:
+        - python
+        - numpy
+
+test:
+    imports:
+        - ESMF
+
+about:
+    home: http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_8_0_0/esmpy_doc/html/index.html
+
+    home: https://www.earthsystemcog.org/projects/esmpy/
+    license: The University of Illinois/NCSA
+    license_file: LICENSE
+    summary: ESMPy is a Python interface to the Earth System Modeling Framework (ESMF) regridding utility. ESMPy build against NCI ESMF install.
