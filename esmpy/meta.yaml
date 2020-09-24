@@ -23,17 +23,14 @@ requirements:
     host:
         - python
         - numpy
+        - krb5 =1.17.*
     run:
         - python
         - numpy
-        - krb5>=1.18.2
-
-
+        - {{ pin_compatible('krb5', max_pin='x.x') }}
 test:
-    commands:
-        - python -v -c 'import ESMF'
-          # imports:
-          # - ESMF
+    imports:
+        - ESMF
 
 about:
     home: https://www.earthsystemcog.org/projects/esmpy/
