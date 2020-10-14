@@ -1,0 +1,52 @@
+{% set version='0.13.1' %}
+
+package:
+    name: ants
+    version: '{{version}}'
+
+source:
+    svn_url: https://code.metoffice.gov.uk/svn/ancil/ants/tags/v{{version}}
+
+build:
+    noarch: python
+    number: 0
+    script: {{PYTHON}} -m pip install --no-deps --ignore-installed .
+
+requirements:
+    host:
+        - python
+        - pip
+        - numpy
+    run:
+        - python
+        - iris
+        - mule
+        - numpy
+        - numba
+        - f90nml
+        - gdal
+        - python-stratify
+        - esmpy
+        - pykdtree
+
+test:
+    requires:
+        - pytest
+        - nose
+        - filelock
+        - black
+        - isort
+        - pyflakes
+        - imagehash
+    imports:
+        - ants
+    source_files:
+        - lib
+    commands:
+        - py.test lib
+
+about:
+    home: https://code.metoffice.gov.uk/trac/ancil
+    license: BSD
+    license_file: LICENSE.txt
+    summary: Unified Model Ancillary Tools and Suites
