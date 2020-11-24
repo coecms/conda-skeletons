@@ -2,6 +2,8 @@ coecss conda skeletons
 
 Used to create the packages at https://anaconda.org/coecms
 
+If the package is to be added to the analysis3-unstable environment, it is best to load the unstable environment before creating the package to help with coherence of dependency versions.
+
 To add a package
 
     conda skeleton pypi $PACKAGE
