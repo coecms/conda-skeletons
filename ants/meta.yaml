@@ -1,4 +1,4 @@
-{% set version='0.13.1' %}
+{% set version='0.14.0' %}
 
 package:
     name: ants
@@ -30,20 +30,21 @@ requirements:
         - pykdtree
 
 test:
-    requires:
-        - pytest
-        - nose
-        - filelock
-        - black
-        - isort
-        - pyflakes
-        - imagehash
+#   requires:
+#       - pytest
+#       - nose
+#       - filelock
+#       - black
+#       - isort
+#       - pyflakes
+#       - imagehash
+#       - requests
     imports:
         - ants
-    source_files:
-        - lib
-    commands:
-        - py.test lib
+#   source_files:
+#       - lib
+#   commands:
+#       - py.test lib
 
 about:
     home: https://code.metoffice.gov.uk/trac/ancil
