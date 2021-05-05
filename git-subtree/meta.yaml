@@ -1,0 +1,28 @@
+{% set version = '2.31.1' %}
+
+package:
+    name: git-subtree
+    version: {{version}}
+
+source:
+    git_url: https://github.com/git/git
+    git_rev: v{{version}}
+    git_depth: 1
+
+build:
+    number: 0
+    script: mkdir $PREFIX/bin && cp contrib/subtree/git-subtree.sh $PREFIX/bin/git-subtree
+
+requirements:
+    run:
+        - git
+
+test:
+    commands:
+        - git subtree add -h
+
+
+about:
+    home: https://github.com/git/git/tree/master/contrib/subtree
+    license: GPL2
+    license_file: contrib/subtree/COPYING
