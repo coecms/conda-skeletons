@@ -4,27 +4,37 @@ package:
 
 source:
     svn_url: https://code.metoffice.gov.uk/svn/um/mule/trunk
-    svn_rev: 79553
+    svn_rev: 97728
 
 build:
-    noarch: python
-    number: 0
+    number: 1
     script: |
+        export CPATH=$BUILD_PREFIX/include:$CPATH
         pushd mule; python -m pip install --no-deps --ignore-installed .; popd
         pushd um_utils; python -m pip install --no-deps --ignore-installed .; popd
+        pushd um_packing; python -m pip install --no-deps --ignore-installed .; popd
+        pushd um_spiral_search; python -m pip install --no-deps --ignore-installed .; popd
 
 requirements:
+    build:
+        - {{ compiler('c') }}
     host:
-        - python
         - pip
+        - python
+        - numpy
+        - shumlib
     run:
         - python
         - numpy
         - six
+        - shumlib
 
 test:
     imports:
         - mule
+        - um_utils
+        - um_packing
+        - um_spiral_search
     commands:
         - mule-pumf --help
         - mule-version

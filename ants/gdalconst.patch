@@ -1,0 +1,11 @@
+--- lib/ants/fileformats/raster.py	2021-08-09 10:43:18.000000000 +1000
++++ lib/ants/fileformats/raster.py	2021-08-09 10:52:30.070888400 +1000
+@@ -19,7 +19,7 @@
+ from ants.utils._dask import as_lazy_data
+ 
+ try:
+-    from gdalconst import GA_ReadOnly
++    from osgeo.gdalconst import GA_ReadOnly
+     from osgeo import gdal, osr
+     from iris.experimental.raster import _GDAL_DATATYPES
+ 

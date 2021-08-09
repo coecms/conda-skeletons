@@ -1,4 +1,4 @@
-{% set version='0.14.0' %}
+{% set version='0.16.0' %}
 
 package:
     name: ants
@@ -6,6 +6,8 @@ package:
 
 source:
     svn_url: https://code.metoffice.gov.uk/svn/ancil/ants/tags/v{{version}}
+    patches:
+        - gdalconst.patch
 
 build:
     noarch: python
@@ -30,21 +32,21 @@ requirements:
         - pykdtree
 
 test:
-#   requires:
-#       - pytest
-#       - nose
-#       - filelock
-#       - black
-#       - isort
-#       - pyflakes
-#       - imagehash
-#       - requests
+#    requires:
+#        - pytest
+#        - nose
+#        - filelock
+#        - black
+#        - isort
+#        - pyflakes
+#        - imagehash
+#        - requests
     imports:
         - ants
-#   source_files:
-#       - lib
-#   commands:
-#       - py.test lib
+#    source_files:
+#        - lib
+#    commands:
+#        - py.test lib # --ignore lib/ants/tests/fileformats/ugrid
 
 about:
     home: https://code.metoffice.gov.uk/trac/ancil
