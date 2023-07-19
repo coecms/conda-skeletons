@@ -5,7 +5,7 @@ package:
     version: '{{version}}'
 
 source:
-    svn_url: https://code.metoffice.gov.uk/svn/ancil/ants/tags/v{{version}}
+    svn_url: https://code.metoffice.gov.uk/svn/ancil/ants/tags/{{version}}
     patches:
         - gdalconst.patch
 

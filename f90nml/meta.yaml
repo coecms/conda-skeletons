@@ -1,8 +1,8 @@
 {% set name = "f90nml" %}
-{% set version = "1.0.2" %}
+{% set version = "1.4.3" %}
 {% set file_ext = "tar.gz" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "cfebfc34dd8969b1a9424363407ca7915481f47377819b204eaa08140fd4e7bb" %}
+{% set hash_value = "e2f3cd23d821ebcaef66ce406485b35aa08aae0df92c4bece76e227e5bd146e1" %}
 
 package:
   name: '{{ name|lower }}'

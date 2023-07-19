@@ -1,10 +1,10 @@
 package:
     name: shumlib
-    version: '2021.07.1'
+    version: '2023.06.1'
 
 source:
     svn_url: https://code.metoffice.gov.uk/svn/utils/shumlib/trunk
-    svn_rev: 5320
+    svn_rev: 6903
 
 build:
     number: 0

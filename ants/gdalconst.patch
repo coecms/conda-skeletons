@@ -6,6 +6,6 @@
  try:
 -    from gdalconst import GA_ReadOnly
 +    from osgeo.gdalconst import GA_ReadOnly
-     from osgeo import gdal, osr
      from iris.experimental.raster import _GDAL_DATATYPES
+     from osgeo import gdal, osr
  
